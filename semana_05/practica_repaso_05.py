@@ -19,7 +19,7 @@ calificaciones[1] = 86.93
 calificaciones_2 = [60.11, 86.95]
 general = calificaciones + calificaciones_2
 general.sort()
-print("NOTAS GENERALES: ", min(general) , max(general))
+print("NOTAS GENERALES: \n", "Nota Min: " , min(general) , "Nota Max: ", max(general))
 print("Estudiantes Calificados: " , len(general))
 
 nueva_nota = float(input("Ingrese Nueva Calificación: "))
@@ -29,9 +29,9 @@ print(general)
 general.remove(min(general))
 print(general)
 
-if 70.43 in general:
-    print("70.43 sí está en las calificaciones")
+if 70.50 in general:
+    print("70.50 sí está en las calificaciones")
 else:
-    print("70.43 no está en las calificaciones")
+    print("70.50 no está en las calificaciones")
 
 
