@@ -123,8 +123,33 @@ while entrada != "fin":
     cantidad = int(entrada)
   except ValueError:
     print("Entrada inválida: Ingrese un número entero positivo o 'fin' para terminar  .")
-else:
-  #regista grupo, acepta, rehaza.
-  pass
+  else:
+    if cantidad <= 0:
+      print("Entrada inválida: El Grupo debe Tener al Menos Una Persona")
+    elif ocupacion_actual + cantidad <= CAPACIDAD_MAXIMA:
+      grupos_aceptados.append(cantidad)
+      ocupacion_actual += cantidad
+      espacios_disponibles = CAPACIDAD_MAXIMA - ocupacion_actual
+      print(f"Grupo Aceptado: ingresas {cantidad} personas.")
+      print(f"Ocupación Actual: {ocupacion_actual}")
+      print(f"Espacios Disponibles: {espacios_disponibles}")
+    else:
+      grupos_rechazados.append(cantidad)
+      print(f"Grupo Rechazado: No hay espacio para {cantidad} personas.")
+      print(f"Ocupación Actual: {ocupacion_actual}")
+      print(f"Espacios Disponibles: {espacios_disponibles}")
 
-entrada = input("Cantidad de personas en el grupo: ").strip().lower()
+  entrada = input("\nCantidad de personas en el grupo: ").strip().lower()
+
+porcentaje_ocupacion = ocupacion_actual * 100 / CAPACIDAD_MAXIMA
+#Saliddas:
+#Porcentaje de ocupación, grupo aceptado menor y mayor, y clasificación del estado final.
+print("REPORTE FINAL")
+print(f"Grupos Aceptados: {len(grupos_aceptados)}")
+print(f"GRupos Rechazados:  {len(grupos_rechazados)}")
+print(f"Grupo Mínimo Aceptado: {min(grupos_aceptados)} personas.")
+print(f"Grupo Máximo Aceptado:  {max(grupos_aceptados)} personas.")
+print(f"Personas Admitidas: ", ocupacion_actual)
+print(f"Capacidad Máxima: {CAPACIDAD_MAXIMA}")
+print(f"Espacios Disponibles: {espacios_disponibles}")
+print(f"Porcentaje de Ocupación: {porcentaje_ocupacion: .2f}%")
