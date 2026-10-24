@@ -106,3 +106,15 @@ Otros casos para probar:
 # [] {} ><
 print("SISTEMA CONTROL DE AFORO CENAC")
 print("-" *70)
+
+max_aforo = 700
+aforo = 0
+aceptados = []
+rechazados = []
+
+entrada = input("Cantidad grupo (o fin para terminar): ").strip().lower()
+
+while entrada != "fin":
+    grupo = int(entrada)
+    
+    
