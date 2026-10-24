@@ -104,17 +104,27 @@ Otros casos para probar:
 
 # Desarrolle su solución a partir de esta línea.
 # [] {} ><
+CAPACIDAD_MAXIMA = 700
+#listas de Control
+grupos_aceptados = []
+grupos_rechazados = []
+ocupacion_actual = 0
+espacios_disponibles = CAPACIDAD_MAXIMA - ocupacion_actual
+
+#
 print("SISTEMA CONTROL DE AFORO CENAC")
-print("-" *70)
+print(f"Capacidad máxima del Anfiteatro: {CAPACIDAD_MAXIMA} personas")
+print("-" *60)
 
-max_aforo = 700
-aforo = 0
-aceptados = []
-rechazados = []
-
-entrada = input("Cantidad grupo (o fin para terminar): ").strip().lower()
-
+#entradas
+entrada = input("Cantidad de personas en el grupo (o fin para terminar): ").strip().lower()
 while entrada != "fin":
-    grupo = int(entrada)
-    
-    
+  try:
+    cantidad = int(entrada)
+  except ValueError:
+    print("Entrada inválida: Ingrese un número entero positivo o 'fin' para terminar  .")
+else:
+  #regista grupo, acepta, rehaza.
+  pass
+
+entrada = input("Cantidad de personas en el grupo: ").strip().lower()
