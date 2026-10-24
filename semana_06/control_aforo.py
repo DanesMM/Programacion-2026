@@ -103,3 +103,6 @@ Otros casos para probar:
 
 
 # Desarrolle su solución a partir de esta línea.
+# [] {} ><
+print("SISTEMA CONTROL DE AFORO CENAC")
+print("-" *70)
