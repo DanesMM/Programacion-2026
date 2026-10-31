@@ -2,6 +2,7 @@
 
 producto = "Tomate"
 precios = [900, 850, 1000, 950, 1200]
+#precios = [900, 900, 900, 900, 900]
 
 # TODO: Calcule promedio, mínimo, máximo y rango (máximo - mínimo).
 promedio = sum(precios) / len (precios)
@@ -16,7 +17,9 @@ encima_promedio = 0
 while indice < len(precios):
     if precios[indice] > promedio:
         encima_promedio += 1
-        indice += 1
+    
+    
+    indice += 1
 
 # TODO: Clasifique el rango: >=300 variación alta; >=150 moderada; si no, baja.
 if rango >= 300:

@@ -4,11 +4,28 @@ from incidencias import incidencias
 
 # Cada incidencia es un diccionario: id, provincia, categoria,
 # minutos_atencion y resuelto (True o False).
+print("Registros de Soporte Universitario")
+print ("-" * 40)
 
 # TODO: Prepare un acumulador de minutos, un diccionario para contar
 #       "Acceso", "Equipo" y "Red", un contador de casos pendientes,
 #       un set de provincias con pendientes, una lista de tuplas de casos
 #       urgentes y una tupla para el caso con más minutos de atención.
+minutos_totales = 0
+conteo_categorias = {
+    "Acceso": 0, 
+    "Equipo": 0,
+    "Red": 0
+    }
+
+provincias = set()
+caso_mas_largo = ("", 0)
+
+for incidencia in incidencias:
+    minutos_totales += incidencia["minutos_atencion"]
+    conteo_categorias[incidencia["categoria"]] += 1
+    
+
 # TODO: Recorra incidencias una sola vez. Actualice los acumuladores y el
 #       conteo de la categoría de cada registro.
 # TODO: Si un caso NO está resuelto, cuéntelo y agregue su provincia al set.
