@@ -58,7 +58,7 @@ print(f"Cantidad de Casos: {control_casos}")
 print(f"Total de Minutos: {minutos_totales} minutos.")
 print(f"Promedio de Minutos: {promedio:.0f} minutos.")
 
-print(f"\nConteo por Categoría:")
+print("\nConteo por Categoría:")
 for categoria, cantidad in conteo_categorias.items():
     print(f"  {categoria}: {cantidad} casos.")
 
