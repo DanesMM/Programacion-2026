@@ -7,7 +7,7 @@ y luego a 3 conforme verifique cada parte con python analisis_atenciones.py.
 from lector_csv import cargar_atenciones
 
 
-ETAPA = 1
+ETAPA = 2
 
 
 def explorar_atenciones(atenciones):
@@ -16,9 +16,21 @@ def explorar_atenciones(atenciones):
     print("P1. Archivo leído correctamente.")
 
     # P2. Cuente las filas con un ciclo. Compruebe que obtuvo 12.
+    contador = 0
+    for atencion in atenciones:
+        contador += 1
+    print("Total de atenciones: ", contador)
 
     # P3. Ejemplo listo para ejecutar. Explique qué tipos y campos observa.
     primer_registro = atenciones[0]
+    tipos = {type(valor) for valor in primer_registro.values()}
+    campos = list(primer_registro.keys())
+    print("P3. Tipos de valores:", tipos)
+    print("P3. Campos:", campos)
+
+    #print("Primer Registro: ", primer_registro)
+    #print("Tipo de Registro: " , type(primer_registro))
+    #print("Campos del Registro: " , primer_registro.keys())
 
 
 def contar_y_limpiar(atenciones):
@@ -26,17 +38,50 @@ def contar_y_limpiar(atenciones):
     print("Etapa 2. Complete y compruebe las preguntas 4 a 8.")
     # P4. Cuente los medicamentos tal como aparecen en el CSV con .get().
     # Muestre el contador y su total.
+    contador_medicamentos = {}
+    for atencion in atenciones: 
+        medicamento = atencion.get("medicamento")
+
+        if medicamento in contador_medicamentos:
+            contador_medicamentos[medicamento] += 1
+        else:
+            contador_medicamentos[medicamento] = 1
+    print("Medicamentos: ", contador_medicamentos)
+    print("Total de Medicamentos: ", sum(contador_medicamentos.values()))
 
     # P5. Muestre ejemplos de espacios o mayúsculas en hospital,
     # diagnostico y medicamento.
+    for atencion in atenciones:
+        hospital = atencion.get("hospital")
+        diagnostico = atencion.get("diagnostico")
+        medicamento = atencion.get("medicamento")
+        print("Hospital:" , hospital)
+        print("Diagnóstico: " , diagnostico)
+        print("Medicamento: ", medicamento)
 
     # P6. Cuente los medicamentos con strip() y lower(). Muestre el
     # contador limpio y su total. Compare con P4.
+    contador_limpio = {}
+    for atencion in atenciones: 
+        medicamento = atencion.get("medicamento")
+        medicamento = medicamento.strip().lower()
+
+        if medicamento in contador_limpio:
+            contador_limpio[medicamento]+= 1
+        else:
+            contador_limpio[medicamento] = 1
+    print("Medicamentos: " , contador_limpio)
+    print("Total Medicamentos: ", sum(contador_limpio.values()))
 
     # P7. Agrupe los nombres limpios con las equivalencias de la guía.
     # Complete el diccionario. La clave es la variante y el valor es
     # el nombre que conservará. El nuevo contador debe sumar 12.
-    equivalencias = {}
+equivalencias = {
+    "losartan": "losartán",
+    "paracetamol": "acetaminofén"
+    "acetaminofen": "acetaminofén"
+    "nitrofurantoina" : "nitrofurantoína" 
+}
 
     # P8. Cuente hospitales y diagnósticos con los nombres limpios.
     # Muestre ambos contadores, sus totales y la categoría más frecuente de
