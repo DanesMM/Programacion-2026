@@ -7,7 +7,7 @@ y luego a 3 conforme verifique cada parte con python analisis_atenciones.py.
 from lector_csv import cargar_atenciones
 
 
-ETAPA = 2
+ETAPA = 3
 
 
 def explorar_atenciones(atenciones):
@@ -62,6 +62,7 @@ def contar_y_limpiar(atenciones):
     # P6. Cuente los medicamentos con strip() y lower(). Muestre el
     # contador limpio y su total. Compare con P4.
     contador_limpio = {}
+
     for atencion in atenciones: 
         medicamento = atencion.get("medicamento")
         medicamento = medicamento.strip().lower()
@@ -76,16 +77,41 @@ def contar_y_limpiar(atenciones):
     # P7. Agrupe los nombres limpios con las equivalencias de la guía.
     # Complete el diccionario. La clave es la variante y el valor es
     # el nombre que conservará. El nuevo contador debe sumar 12.
-equivalencias = {
-    "losartan": "losartán",
-    "paracetamol": "acetaminofén"
-    "acetaminofen": "acetaminofén"
-    "nitrofurantoina" : "nitrofurantoína" 
-}
+    equivalencias = {
+        "losartan": "losartán",
+        "paracetamol": "acetaminofén",
+        "acetaminofen": "acetaminofén",
+        "nitrofurantoina" : "nitrofurantoína" }
 
     # P8. Cuente hospitales y diagnósticos con los nombres limpios.
     # Muestre ambos contadores, sus totales y la categoría más frecuente de
     # cada campo.
+    contador_hospitales = {}
+    contador_diagnosticos = {}
+
+    for atencion in atenciones: 
+        hospital = atencion.get("hospital")
+        hospital = hospital.strip().lower()
+
+        diagnostico = atencion.get("diagnostico")
+        diagnostico = diagnostico.strip().lower()
+
+        if hospital in contador_hospitales:
+            contador_hospitales[hospital] += 1
+        else:
+            contador_hospitales[hospital] = 1
+
+        if diagnostico in contador_diagnosticos:
+            contador_diagnosticos[diagnostico] += 1
+        else:
+            contador_diagnosticos[diagnostico] = 1
+
+    print("Conteo de hospitales:", contador_hospitales)
+    print("Total de hospitales:", sum(contador_hospitales.values()))
+    print("Hospital más frecuente:", max(contador_hospitales, key=contador_hospitales.get))
+    print("Conteo de diagnósticos:", contador_diagnosticos)
+    print("Total de diagnósticos:", sum(contador_diagnosticos.values()))
+    print("Diagnóstico más frecuente:", max(contador_diagnosticos, key=contador_diagnosticos.get))
 
 
 def concluir(atenciones):
@@ -93,9 +119,21 @@ def concluir(atenciones):
     print("Etapa 3. Complete y compruebe las preguntas 9 y 10.")
     # P9. Cuente por cédula. Muestre cuántas personas hay, cuáles cédulas
     # se repiten y si coinciden el nombre, la edad y la provincia.
-
     # P10. Sume minutos_espera con un ciclo. Muestre el total y el promedio.
     # Redacte un hallazgo que use el promedio y un conteo.
+
+    visitas = {}
+    total_minutos = 0
+
+    for atencion in atenciones:
+        cedula = atencion["cedula"]
+        visitas[cedula] = visitas.get(cedula, 0) +1
+        total_minutos += atencion["minutos_espera"]
+
+    print("Personas: ", len(visitas))
+    print("Visitas por Cédula: ", visitas)
+    print("Minutos de Espera:" , total_minutos)
+    print("Promedio: " , total_minutos / len(atenciones))
 
 
 atenciones = cargar_atenciones()
