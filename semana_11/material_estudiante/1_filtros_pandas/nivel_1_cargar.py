@@ -13,7 +13,7 @@ Ejecute desde la carpeta material_estudiante:  python 1_filtros_pandas/nivel_1_c
 import pandas as pd
 
 # 1. Lea el archivo notas.csv y guárdelo en la variable notas
-notas = pd.read_csv(____)
+notas = pd.read_csv("notas.csv")
 
 # 2. Mire los datos (estas líneas ya están listas)
 print(notas.head(3))            # las primeras 3 filas
